@@ -4,7 +4,6 @@ import axios from "axios";
 import { useState } from "react";
 import Modal from "../_components/modal";
 
-// Define Post interface
 interface Post {
   id: string;
   title: string;
@@ -17,7 +16,6 @@ interface Post {
 const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
 const Dashboard = () => {
-  // Fetch posts from the JSON server running on port 3001
   const {
     data: posts,
     error,
@@ -27,7 +25,6 @@ const Dashboard = () => {
   const [showModal, setShowModal] = useState(false);
   const [currentPost, setCurrentPost] = useState<Post | null>(null);
 
-  // Function to delete a post
   const handleDelete = async (id: string) => {
     try {
       await axios.delete(`http://localhost:3001/posts/${id}`);
@@ -37,13 +34,11 @@ const Dashboard = () => {
     }
   };
 
-  // Function to open the edit modal
   const handleEdit = (post: Post) => {
     setCurrentPost(post);
     setShowModal(true);
   };
 
-  // Function to open the add modal
   const handleAdd = () => {
     setCurrentPost({
       id: "",
@@ -56,18 +51,17 @@ const Dashboard = () => {
     setShowModal(true);
   };
 
-  // Function to save the edited or added post
   const handleSave = async (updatedPost: Post) => {
     try {
       if (updatedPost.id) {
         await axios.put(
           `http://localhost:3001/posts/${updatedPost.id}`,
           updatedPost
-        ); // Update post
+        );
       } else {
-        await axios.post(`http://localhost:3001/posts`, updatedPost); // Add new post
+        await axios.post(`http://localhost:3001/posts`, updatedPost);
       }
-      mutate(); // Re-fetch posts to update the list
+      mutate();
     } catch (error) {
       console.error("Error saving the post:", error);
     }
