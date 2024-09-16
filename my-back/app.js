@@ -5,7 +5,7 @@ const cors = require("cors");
 const connectDB = require("./db/ConnectionDb");
 const blogRouter = require("./routers/blogRouter");
 const path = require("path");
-const { ErrorMiddleware } = require("../utils/errorHandler");
+const { ErrorMiddleware } = require("./utils/ErrorHandler");
 
 app.use(express.json());
 app.use(cors());

@@ -1,6 +1,8 @@
 const bloglist = require("../models/BlogsModel");
+const path = require('path');
 // const { ErrorHandler } = require("../utils/ErrorHandler");
-const { ErrorHandler } = require(path.join(__dirname, '../utils/ErrorHandler'));
+// const { ErrorHandler } = require(path.join(__dirname, '../utils/ErrorHandler'));
+const { ErrorHandler } = require("../utils/ErrorHandler")
 
 const getAllBlogs = async (req, res, next) => {
     try {
